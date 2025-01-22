@@ -9,7 +9,5 @@ Route::get('/', function () {
 
 Route::controller(LinkShortnerController::class)->group(function () {
     Route::get('/decode', 'show')->name('decode');
-    Route::match(['get', 'post'], '/encode', 'store')->name('encode');
-    Route::get('/decode/{url}', 'show')->name('decode');
-    Route::match(['get', 'post'], '/encode/{url}', 'store')->name('encode');
+    Route::get('/encode', 'store')->name('encode');
 });
