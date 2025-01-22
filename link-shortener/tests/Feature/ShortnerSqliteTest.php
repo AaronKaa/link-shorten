@@ -1,9 +1,6 @@
 <?php
 
-use Illuminate\Config\Repository as Config;
 use App\Services\ShortnerService;
-use App\Store\LinkStore;
-use Mockery as m;
 use Illuminate\Support\Facades\Artisan;
 
 beforeEach(function () {

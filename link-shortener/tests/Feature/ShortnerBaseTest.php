@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Config\Repository as Config;
 use App\Services\ShortnerService;
 use App\Store\LinkStore;
-use Mockery as m;
+use Illuminate\Config\Repository as Config;
 use Illuminate\Support\Facades\Artisan;
+use Mockery as m;
 
 beforeEach(function () {
     Artisan::call('config:clear');

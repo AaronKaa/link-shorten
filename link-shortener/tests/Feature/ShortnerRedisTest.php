@@ -1,10 +1,5 @@
 <?php
 
-use Illuminate\Config\Repository as Config;
-use App\Services\ShortnerService;
-use App\Store\LinkStore;
-use Mockery as m;
-
 test('Test in redis that the links that are meant to return a 422', function() {
     $url_error_links = [
         '/encode' => 422,
