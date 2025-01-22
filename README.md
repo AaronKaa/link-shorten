@@ -1,6 +1,6 @@
 # Link Shortener
 
-## Brief
+## Brief
 
 Create a URL shortening service where you enter a URL such as https://www.thisisalongdomain.com/with/some/parameters?and=here_too and it returns a short URL such as http://short.est/GeAi9K.
 Tasks:
@@ -38,7 +38,7 @@ Run the installer
 
 	make install
 
-If you have all of the requirements, the solution will install and bring up the solution and provided port 80 is available (you may have other servies running) you can access the solution at *http://localhost* .
+If you have all of the requirements, the solution will install and bring up the solution and provided port 80 is available (you may have other services running) you can access the solution at *http://localhost* .
 
 You can pull down the solution with `make down` and back p with `make up`.
 
@@ -46,7 +46,7 @@ You can pull down the solution with `make down` and back p with `make up`.
 
 ### Encoding / Decoding
 
-I chose not to technically encode or decode the links and they are instead converted and then retireved, im not sure if that is what the brief had in mind. The reason for this is that if i encode the link (perhaps using base64) id still have a long link: 
+I chose not to technically encode or decode the links and they are instead converted and then retrieved, im not sure if that is what the brief had in mind. The reason for this is that if I encode the link (perhaps using base64) id still have a long link: 
 
 Encoding the link :
 
@@ -181,11 +181,6 @@ I created a service provider in Providers that uses contextua binding to switch 
 
 I added a seperate package and then the associated implementation in the app/Testing folder that lets us mock redis (you can run the tests with the redis container stopped). 
 
-#### Validation 
+#### Validation 
 
 FormRequests (app/Http/Requests) have been used to provide validation on our routes.
-
-
-
-
-

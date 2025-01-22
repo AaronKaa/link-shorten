@@ -1,6 +1,6 @@
 # Link Shortener
 
-## Brief
+## Brief
 
 Create a URL shortening service where you enter a URL such as https://www.thisisalongdomain.com/with/some/parameters?and=here_too and it returns a short URL such as http://short.est/GeAi9K.
 Tasks:
@@ -28,17 +28,17 @@ Requirements:
 
 Clone the repo from Github
 
-	git clone https://github.com/AaronKaa/link-shorten.git
+    git clone https://github.com/AaronKaa/link-shorten.git
 
 Enter the dir
 
-	cd link-shorten
+    cd link-shorten
 
 Run the installer
 
-	make install
+    make install
 
-If you have all of the requirements, the solution will install and bring up the solution and provided port 80 is available (you may have other servies running) you can access the solution at *http://localhost* .
+If you have all of the requirements, the solution will install and bring up the solution and provided port 80 is available (you may have other services running) you can access the solution at *http://localhost* .
 
 You can pull down the solution with `make down` and back p with `make up`.
 
@@ -46,27 +46,27 @@ You can pull down the solution with `make down` and back p with `make up`.
 
 ### Encoding / Decoding
 
-I chose not to technically encode or decode the links and they are instead converted and then retireved, im not sure if that is what the brief had in mind. The reason for this is that if i encode the link (perhaps using base64) id still have a long link: 
+I chose not to technically encode or decode the links and they are instead converted and then retrieved, im not sure if that is what the brief had in mind. The reason for this is that if I encode the link (perhaps using base64) id still have a long link: 
 
 Encoding the link :
 
-	https://example.com
+    https://example.com
 
 Would produce the base64 :
 
-	aHR0cHM6Ly9leGFtcGxlLmNvbQ==
+    aHR0cHM6Ly9leGFtcGxlLmNvbQ==
 
 So the final link would be :
 
-	https://short.est/aHR0cHM6Ly9leGFtcGxlLmNvbQ==
+    https://short.est/aHR0cHM6Ly9leGFtcGxlLmNvbQ==
 
 This isn't too bad but encoding the link :
 
-	https://arstechnica.com/gadgets/2025/01/ios-18-3-macos-15-3-updates-switch-to-enabling-apple-intelligence-by-default/
+    https://arstechnica.com/gadgets/2025/01/ios-18-3-macos-15-3-updates-switch-to-enabling-apple-intelligence-by-default/
 
 Would produce the link :
 
-	https://short.est/aHR0cHM6Ly9hcnN0ZWNobmljYS5jb20vZ2FkZ2V0cy8yMDI1LzAxL2lvcy0xOC0zLW1hY29zLTE1LTMtdXBkYXRlcy1zd2l0Y2gtdG8tZW5hYmxpbmctYXBwbGUtaW50ZWxsaWdlbmNlLWJ5LWRlZmF1bHQv
+    https://short.est/aHR0cHM6Ly9hcnN0ZWNobmljYS5jb20vZ2FkZ2V0cy8yMDI1LzAxL2lvcy0xOC0zLW1hY29zLTE1LTMtdXBkYXRlcy1zd2l0Y2gtdG8tZW5hYmxpbmctYXBwbGUtaW50ZWxsaWdlbmNlLWJ5LWRlZmF1bHQv
 
 Hardly a short link...
 
@@ -83,9 +83,9 @@ As a fast data store (and 'in-memory' as a nod to the brief) I eventually also a
 
 There are a couple of config vars in the .env : 
 
-	SHORTNER_URL=http://short.est
-	SHORTNER_URL_LENGTH=7
-	SHORTNER_STORAGE=redis
+    SHORTNER_URL=http://short.est
+    SHORTNER_URL_LENGTH=7
+    SHORTNER_STORAGE=redis
 
 These do what youd expect ie. set the base url of the shortening service, change the length of the url slug that is returned from the service and lastly the storage var - this lets the admin of the service change how the service is persisted. 
 
@@ -95,27 +95,27 @@ The service operates as in the brief:
 
 Visit :
 
-	http://localhost/encode?url=http://example.com
+    http://localhost/encode?url=http://example.com
 
 This will return a link such as :
 
-	{
-	  "link":"http://short.est/zPQludk"
-	}
+    {
+      "link":"http://short.est/zPQludk"
+    }
 
 Using this link, visit: 
 
-	http://localhost/decode?url=http://short.est/zPQludk
+    http://localhost/decode?url=http://short.est/zPQludk
 
 And this will return:
 
-	{
-	  "link":"https://example.com"
-	}
+    {
+      "link":"https://example.com"
+    }
 
 Even if these are run in the browser you'll see if you check headers that they are :
 
-	Content-Type: application/json
+    Content-Type: application/json
 
 (As per the brief)
 
@@ -125,37 +125,37 @@ Visiting any of the links without providing a url or without providing a valid u
 
 Visit : 
 
-	http://localhost/decode or http://localhost/encode
+    http://localhost/decode or http://localhost/encode
 
 And the response will be :
 
-	{
-	  "errors": {
-	    "url":["The url field is required."]
-	  }
-	}
+    {
+      "errors": {
+        "url":["The url field is required."]
+      }
+    }
 
 And an invalid URL such as :
 
-	http://localhost/decode?url=dfnvdifuvn or http://localhost/encode?url=dfnvdifuvn
+    http://localhost/decode?url=dfnvdifuvn or http://localhost/encode?url=dfnvdifuvn
 
 The reponse would return :
 
-	{
-	  "errors": {
-	    "url":["The url field must be a valid URL."]
-	  }
-	}
+    {
+      "errors": {
+        "url":["The url field must be a valid URL."]
+      }
+    }
 
 Both circumstances will return with status code: 422: Unprocessable Content
 
 Trying to resolve a link that doesnt exist returns a status 404 with the following response :
 
-	{
-	  "exception":"UrlNotFoundException",
-	  "msg":"Shortened URL not found.",
- 	  "status":404
-	}
+    {
+      "exception":"UrlNotFoundException",
+      "msg":"Shortened URL not found.",
+       "status":404
+    }
 
 
 ## Testing
@@ -164,7 +164,7 @@ Tests can be foud in the standard laravel tests folder */tests* and in this case
 
 As long as you are in the same folder as the Makefile and docker is still running :
 
-	make test
+    make test
 
 This should run all tests and if all goes well successfully.
 
@@ -181,11 +181,6 @@ I created a service provider in Providers that uses contextua binding to switch 
 
 I added a seperate package and then the associated implementation in the app/Testing folder that lets us mock redis (you can run the tests with the redis container stopped). 
 
-#### Validation 
+#### Validation 
 
 FormRequests (app/Http/Requests) have been used to provide validation on our routes.
-
-
-
-
-

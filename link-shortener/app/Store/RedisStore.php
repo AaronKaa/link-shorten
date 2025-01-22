@@ -2,8 +2,8 @@
 
 namespace App\Store;
 
-use Illuminate\Support\Facades\Redis;
 use App\Exceptions\UrlNotFoundException;
+use Illuminate\Support\Facades\Redis;
 
 class RedisStore extends Store implements LinkStore
 {

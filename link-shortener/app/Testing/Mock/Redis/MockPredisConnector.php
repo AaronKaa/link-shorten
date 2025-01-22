@@ -2,9 +2,9 @@
 
 namespace App\Testing\Mock\Redis;
 
-use Illuminate\Redis\Connectors\PredisConnector;
-use Illuminate\Redis\Connections\PredisConnection;
 use Illuminate\Redis\Connections\PredisClusterConnection;
+use Illuminate\Redis\Connections\PredisConnection;
+use Illuminate\Redis\Connectors\PredisConnector;
 use Illuminate\Support\Arr;
 use M6Web\Component\RedisMock\RedisMockFactory;
 

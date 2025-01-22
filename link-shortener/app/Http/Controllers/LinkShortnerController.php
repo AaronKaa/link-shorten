@@ -6,8 +6,8 @@ use App\Exceptions\UrlNotFoundException;
 use App\Http\Requests\DecodeLinkRequest;
 use App\Http\Requests\EncodeLinkRequest;
 use App\Services\ShortnerService;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class LinkShortnerController extends Controller
 {

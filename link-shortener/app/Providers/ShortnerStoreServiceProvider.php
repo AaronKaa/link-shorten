@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use App\Store\LinkStore;
+use App\Store\MySqlStore;
 use App\Store\RedisStore;
 use App\Store\SQLiteStore;
-use App\Store\MySqlStore;
+use Illuminate\Support\ServiceProvider;
 
 class ShortnerStoreServiceProvider extends ServiceProvider
 {
@@ -23,7 +23,7 @@ class ShortnerStoreServiceProvider extends ServiceProvider
                     return new RedisStore();
                 case 'sqlite':
                     return new SQLiteStore();
-                case 'sqlite':
+                case 'mysql':
                     return new MySqlStore();
                 default:
                     throw new \Exception("Invalid shortner store configured.");
